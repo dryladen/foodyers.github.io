@@ -1,6 +1,15 @@
 .bg-biru {
   background: #40A2E3;
 }
+
+.btn-biru {
+  background: #47b3fa;
+  color: white;
+}
+.btn-biru:hover {
+  background: #40A2E3;
+  color: white;
+}
 #content {
   margin-left: 337px;
   margin-top: 62px;
