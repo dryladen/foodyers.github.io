@@ -1,3 +1,32 @@
 .bg-biru {
   background: #40A2E3;
 }
+#content {
+  margin-left: 337px;
+  margin-top: 62px;
+  width: 100%;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-sidebar {
+  color: white;
+  padding: 0 20px;
+  list-style-type: none;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.list-sidebar-item {
+  padding: 10px 10px;
+  background-color: #47b3fa;
+  font-size: 16px;
+  border-bottom: 1px solid white;
+}
+
+.list-sidebar-item:hover {
+  background-color: #40A2E3;
+}
