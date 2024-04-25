@@ -27,6 +27,10 @@
   border-bottom: 1px solid white;
 }
 
+.list-sidebar-item a {
+  color: white;
+  text-decoration: none;
+}
 .list-sidebar-item:hover {
   background-color: #40A2E3;
 }
