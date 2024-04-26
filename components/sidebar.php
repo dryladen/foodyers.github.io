@@ -2,7 +2,7 @@
   <h3 class="text-white fw-bold text-center bg-biru m-0" style="padding: 18px 0;">FoodMahasiswaSMD</h3>
   <ul class="list-sidebar fs-4 mt-3 fw-bold" style="background-color: #47b3fa;">
     <li class="list-sidebar-item rounded-0 active" aria-current="true">
-      <a href="../pages/beranda.php"><i class="bi bi-house-fill pe-4"></i></i>Beranda</a>
+      <a href="../pages/dashboard.php"><i class="bi bi-house-fill pe-4"></i></i>Dashboard</a>
     </li>
     <li class="list-sidebar-item rounded-0">
       <a href="../rumah-makan/index.php"><i class="bi bi-database-fill pe-4"></i>Data Rumah Makan</a>

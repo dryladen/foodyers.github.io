@@ -1,9 +1,13 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <?php include('../components/koneksi.php') ?>
   <?php include('../components/head.php') ?>
-  <title>Data Users</title>
+  <title>Data Pengguna</title>
 </head>
 
 
@@ -21,7 +25,7 @@
           <!-- start content -->
           <h4 class="fw-bold">Daftar Pengguna</h4>
 
-          <table class="table table-striped table-hover" id="dataTables">
+          <table class="table align-middle table-striped table-hover" id="dataTables">
             <thead>
               <tr>
                 <th colspan="5"></th>
@@ -37,42 +41,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th class="text-center ">1</th>
-                <td class="text-center "><img src="../images/user.jpg" width="32" class="rounded-circle " alt="">
-                </td>
-                <td class="text-center ">Otto</td>
-                <td class="text-center ">otto@gmail.com</td>
-                <td class="text-center ">user</td>
-                <td class="text-center">
-                  <a class="btn bg-success " href="edit.php"><i class="text-white fas fa-pencil"></i></a>
-                  <a class="btn bg-danger " href=""><i class="text-white fa fa-trash"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th class="text-center ">2</th>
-                <td class="text-center "><img src="../images/user.jpg" width="32" class="rounded-circle " alt="">
-                </td>
-                <td class="text-center ">Rark</td>
-                <td class="text-center ">rark@gmail.com</td>
-                <td class="text-center ">admin</td>
-                <td class="text-center">
-                  <a class="btn bg-success " href="edit.php"><i class="text-white fas fa-pencil"></i></a>
-                  <a class="btn bg-danger " href=""><i class="text-white fa fa-trash"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th class="text-center ">3</th>
-                <td class="text-center "><img src="../images/user.jpg" width="32" class="rounded-circle " alt="">
-                </td>
-                <td class="text-center ">Uto</td>
-                <td class="text-center ">uto@gmail.com</td>
-                <td class="text-center ">admin</td>
-                <td class="text-center">
-                  <a class="btn bg-success " href="edit.php"><i class="text-white fas fa-pencil"></i></a>
-                  <a class="btn bg-danger " href=""><i class="text-white fa fa-trash"></i></a>
-                </td>
-              </tr>
+              <?php
+              $no = 1;
+              $result = mysqli_query($koneksi, "SELECT * FROM users");
+              while ($row = mysqli_fetch_assoc($result)) {
+              ?>
+                <tr class="align-middle">
+                  <th class="text-center "><?= $no ?></th>
+                  <td class="text-center "><img src="../images/users/<?= $row['gambar'] ?>" width="64" height="64" class="object-fit-contain rounded-circle " alt="">
+                  </td>
+                  <td class="text-center align-middle"><?= $row['username'] ?></td>
+                  <td class="text-center align-middle "><?= $row['email'] ?></td>
+                  <td class="text-center align-middle "><?= $row['role'] ?></td>
+                  <td class="text-center align-middle">
+                    <a class="btn bg-success " href="edit.php?id=<?= $row['id'] ?>"><i class="text-white fas fa-pencil"></i></a>
+                    <a class="btn bg-danger " href="backend/delete.php?delete=<?= $row['id'] ?>"><i class="text-white fa fa-trash"></i></a>
+                  </td>
+                </tr>
+              <?php $no++;
+              } ?>
             </tbody>
           </table>
           <!-- end content -->
