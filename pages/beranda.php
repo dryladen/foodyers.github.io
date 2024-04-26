@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FoodMahasiswaSMD</title>
-  <link rel="stylesheet" href="bootstrap-5.3.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../bootstrap-5.3.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../bootstrap-5.3.3/css/style.css" />
+  <title>FoodMahasiswaSMD</title>
 </head>
 
 <body class="bg-body-tertiary ">
   <nav class="navbar navbar-expand-lg sticky-lg-top py-3" style="background-color: #40A2E3;">
     <div class="container">
       <a class="navbar-brand fw-bold text-white " href="#">FoodMahasiswaSMD</a>
-      <button class="navbar-toggler bg-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler bg-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarScroll">
@@ -27,12 +27,11 @@
           </li>
         </ul>
         <div class="dropdown">
-          <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <img src="../../images/user.jpg" width="32" class="rounded-circle me-3" alt="">Syahria
+          <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../images/user.jpg" width="32" class="rounded-circle me-3" alt="">Syahria
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
-            <li><a class="dropdown-item" href="/pages/login.html"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="/pages/profile.html"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -49,8 +48,7 @@
       <hr>
       <div class="d-flex flex-wrap gap-3">
         <div class="card" style="max-width: 263px">
-          <img src="images/bakoel.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;"
-            alt="images/rm_borneo.jpg" />
+          <img src="../images/bakoel.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
           <div class="card-body">
             <h5 class="card-title">Bakoel Bambu</h5>
             <span class="card-text d-flex align-items-center mb-1">
@@ -68,8 +66,7 @@
           </div>
         </div>
         <div class="card" style="max-width: 263px">
-          <img src="images/rm_borneo.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;"
-            alt="images/.jpg" />
+          <img src="../images/rm_borneo.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="images/.jpg" />
           <div class="card-body">
             <h5 class="card-title">
               Rumah Makan Borneo
@@ -96,8 +93,7 @@
       <div class="mb-3 ">
         <form class="d-flex gap-2" role="search">
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control" aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-lg" placeholder="Cari Rumah Makan" />
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Cari Rumah Makan" />
           </div>
           <button class="btn text-white fw-medium " style="width: 80px;background-color: #40A2E3;" type="submit">
             Cari
@@ -106,8 +102,7 @@
       </div>
       <div class="d-flex flex-wrap gap-3">
         <div class="card" style="max-width: 263px">
-          <img src="images/bakoel.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;"
-            alt="images/rm_borneo.jpg" />
+          <img src="../images/bakoel.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
           <div class="card-body">
             <h5 class="card-title">Bakoel Bambu</h5>
             <span class="card-text d-flex align-items-center mb-1">
@@ -125,8 +120,7 @@
           </div>
         </div>
         <div class="card" style="max-width: 263px">
-          <img src="images/rm_borneo.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;"
-            alt="images/.jpg" />
+          <img src="../images/rm_borneo.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/.jpg" />
           <div class="card-body">
             <h5 class="card-title">
               Rumah Makan Borneo
@@ -146,8 +140,7 @@
           </div>
         </div>
         <div class="card" style="max-width: 263px">
-          <img src="images/ayam-goreng-banjar.jpg" class="card-img-top rounded-top object-fit-cover"
-            style="height: 150px;" alt="images/.jpg" />
+          <img src="../images/ayam-goreng-banjar.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/.jpg" />
           <div class="card-body">
             <h5 class="card-title">Ayam Goreng Banjar</h5>
             <span class="card-text d-flex align-items-center mb-1">
@@ -167,8 +160,7 @@
       </div>
     </div>
   </div>
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top"
-    style="background-color: #40A2E3;">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top" style="background-color: #40A2E3;">
     <div class="col-md-4 d-flex align-items-center ps-5 ">
       <span class="mb-3 mb-md-0 text-white ">© Syahria - 2024</span>
     </div>
@@ -181,7 +173,7 @@
       </li>
     </ul>
   </footer>
-  <script src="bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="../bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

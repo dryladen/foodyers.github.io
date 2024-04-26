@@ -3,18 +3,21 @@
 }
 
 .btn-biru {
-  background: #47b3fa;
-  color: white;
-}
-.btn-biru:hover {
   background: #40A2E3;
   color: white;
 }
+
+.btn-biru:hover {
+  background: #47b3fa;
+  color: white;
+}
+
 #content {
   margin-left: 337px;
   margin-top: 62px;
   width: 100%;
 }
+
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -40,6 +43,7 @@
   color: white;
   text-decoration: none;
 }
+
 .list-sidebar-item:hover {
   background-color: #40A2E3;
 }

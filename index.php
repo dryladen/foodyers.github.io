@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="../bootstrap-5.3.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="bootstrap-5.3.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 
@@ -17,25 +17,20 @@
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
               <form action="" method="post">
-                <h3 class="mb-4">Daftar Akun</h3>
+                <h3 class="mb-4">Masuk Akun</h3>
                 <div class="form-outline mb-3">
-                  <input type="text" name="username" id="username" class="form-control form-control-md" required
-                    placeholder="Username" />
-                </div>
-                <div class="form-outline mb-3">
-                  <input type="email" name="email" id="email" class="form-control form-control-md" required
+                  <input type="email" name="email" id="email" class="form-control form-control-md"
                     placeholder="Email" />
                 </div>
                 <div class="form-outline mb-3">
-                  <input type="password" name="password" id="password" class="form-control form-control-md" required
+                  <input type="password" name="password" id="password" class="form-control form-control-md"
                     placeholder="Password" />
                 </div>
-                <!-- <button class="btn btn-primary btn-lg w-100" type="submit">Daftar</button> -->
-                <a class="btn btn-primary btn-lg w-100" href="login.html">Daftar</a>
-
+                <!-- <button class="btn btn-primary btn-lg w-100" type="submit">Masuk</button> -->
+                <a class="btn btn-primary btn-lg w-100" href="pages/beranda.php">Masuk</a>
               </form>
               <hr class="my-4">
-              <p class="mb-0">Sudah punya akun? <a href="login.html">Masuk</a></p>
+              <p class="mb-0">Belum punya akun? <a href="pages/register.php">Daftar</a></p>
             </div>
           </div>
         </div>

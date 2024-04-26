@@ -2,48 +2,22 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-  <link rel="stylesheet" href="../../bootstrap-5.3.3/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link rel="stylesheet" href="../../bootstrap-5.3.3/css/style.css">
+  <?php include('../components/head.php') ?>
+  <title>Data Users</title>
 </head>
 
 <body>
   <div class="container-fluid">
     <div class="row min-vh-100">
-      <div class="col-3 p-0 fixed-top min-vh-100" style="background-color: #47b3fa; z-index: 6;">
-        <h3 class="text-white fw-bold text-center bg-biru m-0" style="padding: 18px 0;">FoodMahasiswaSMD</h3>
-        <ul class="list-sidebar fs-4 mt-3 fw-bold" style="background-color: #47b3fa;">
-          <li class="list-sidebar-item rounded-0 active" aria-current="true">
-            <a href="../../index.html"><i class="bi bi-house-fill pe-4"></i></i>Dashboard</a>
-          </li>
-          <li class="list-sidebar-item rounded-0">
-            <a href="../rumah-makan/index.html"><i class="bi bi-database-fill pe-4"></i>Data Rumah Makan</a>
-          </li>
-          <li class="list-sidebar-item rounded-0">
-            <a href="index.html"><i class="bi bi-people-fill pe-4"></i>Data Pengguna</a>
-          </li>
-          <li class="list-sidebar-item rounded-0">
-            <a href="../profile.html"><i class="bi bi-person-fill pe-4"></i>Profile</a>
-          </li>
-          <li class="list-sidebar-item rounded-0">
-            <a href="../login.html"><i class="bi bi-box-arrow-left pe-4"></i>Keluar</a>
-          </li>
-        </ul>
-      </div>
+      <?php include('../components/sidebar.php') ?>
       <div class="col-9 p-0">
         <nav class="fixed-top" style="background-color: #47b3fa;z-index: 5;">
           <div class="text-end px-5" style="padding: 15px 0;">
-            <span class="nav-link text-white "><img src="../../images/user.jpg" width="32" class="rounded-circle me-3"
-                alt="">Syahria</span>
+            <span class="nav-link text-white "><img src="../images/user.jpg" width="32" class="rounded-circle me-3" alt="">Syahria</span>
           </div>
         </nav>
         <div id="content" class="px-5 py-3 z-1" style="z-index: 1;">
-          <!-- isi content berubah ubah -->
+          <!-- start content -->
           <h4 class="fw-bold">Tambah Data</h4>
           <div class="card bg-body-secondary p-4">
             <div class="row container-fluid">
@@ -68,8 +42,7 @@
                       </div>
                       <div class=" col-6">
                         <label for="konfirmasi-password" class="form-label">Konfirmasi Password</label>
-                        <input type="password" class="form-control" id="konfirmasi-password"
-                          placeholder="Konfirmasi Password">
+                        <input type="password" class="form-control" id="konfirmasi-password" placeholder="Konfirmasi Password">
                       </div>
                     </div>
                   </div>
@@ -83,34 +56,27 @@
               </div>
             </div>
           </div>
+          <!-- end content -->
         </div>
       </div>
     </div>
   </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../../bootstrap-5.3.3/js/bootstrap.min.js"></script>
-  <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap.min.js"></script>
-
+  <?php include('../components/footer.php') ?>
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       $('#dataTables').DataTable({
         aaSorting: [],
         "columnDefs": [{
           className: "dt-head-center",
           targets: "_all"
-
         }],
-        "preDrawCallback": function (settings) {
+        "preDrawCallback": function(settings) {
           $('#dataTables tbody').hide();
         },
-
-        "drawCallback": function () {
+        "drawCallback": function() {
           $('#dataTables tbody td').addClass("blurry");
           $('#dataTables tbody').fadeIn(200);
-          setTimeout(function () {
+          setTimeout(function() {
             $('#dataTables tbody td').removeClass("blurry");
           }, 200);
         }
