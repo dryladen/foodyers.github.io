@@ -1,3 +1,29 @@
+<?php
+include('components/koneksi.php');
+session_start();
+if (isset($_POST['email']) && isset($_POST['password'])) {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+  $result = mysqli_query($koneksi, $query);
+  if (mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_array($result);
+    $_SESSION['id'] = $row['id'];
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['password'] = $row['password'];
+    $_SESSION['gambar'] = $row['gambar'];
+    $_SESSION['role'] = $row['role'];
+    if ($row['role'] == 'user') {
+      header('Location: pages/beranda.php');
+    } elseif ($row['role'] == 'admin') {
+      header('Location: pages/dashboard.php');
+    }
+  } else {
+    echo "<script>alert('Email atau Password salah!')</script>";
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,15 +45,13 @@
               <form action="" method="post">
                 <h3 class="mb-4">Masuk Akun</h3>
                 <div class="form-outline mb-3">
-                  <input type="email" name="email" id="email" class="form-control form-control-md"
-                    placeholder="Email" />
+                  <input type="email" name="email" id="email" class="form-control form-control-md" placeholder="Email" />
                 </div>
                 <div class="form-outline mb-3">
-                  <input type="password" name="password" id="password" class="form-control form-control-md"
-                    placeholder="Password" />
+                  <input type="password" name="password" id="password" class="form-control form-control-md" placeholder="Password" />
                 </div>
                 <!-- <button class="btn btn-primary btn-lg w-100" type="submit">Masuk</button> -->
-                <a class="btn btn-primary btn-lg w-100" href="pages/beranda.php">Masuk</a>
+                <button type="submit" class="btn btn-primary btn-lg w-100">Masuk</button>
               </form>
               <hr class="my-4">
               <p class="mb-0">Belum punya akun? <a href="pages/register.php">Daftar</a></p>

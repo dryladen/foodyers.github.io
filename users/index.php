@@ -16,11 +16,7 @@
     <div class="row min-vh-100">
       <?php include('../components/sidebar.php') ?>
       <div class="col-9 p-0">
-        <nav class="fixed-top" style="background-color: #47b3fa;z-index: 5;">
-          <div class="text-end px-5" style="padding: 15px 0;">
-            <span class="nav-link text-white "><img src="../images/user.jpg" width="32" class="rounded-circle me-3" alt="">Syahria</span>
-          </div>
-        </nav>
+        <?php include('../components/navbar.php') ?>
         <div id="content" class="px-5 py-3 z-1" style="z-index: 1;">
           <!-- start content -->
           <h4 class="fw-bold">Daftar Pengguna</h4>

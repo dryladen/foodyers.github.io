@@ -1,3 +1,8 @@
+<?php session_start();
+if (!$_SESSION['role']) {
+  header('Location: ../index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,14 +33,14 @@
         </ul>
         <div class="dropdown">
           <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../images/user.jpg" width="32" class="rounded-circle me-3" alt="">Syahria
+            <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $_SESSION['username'] ?>
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
             <li><a class="dropdown-item" href="/pages/profile.html"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="/pages/login.html"><i class="bi bi-box-arrow-left pe-3"></i>Keluar</a>
+            <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left pe-3"></i>Keluar</a>
             </li>
           </ul>
         </div>
@@ -47,53 +52,46 @@
       <h3>Rumah Makan Direkomendasi <i class="bi bi-star-fill" style="color: #eef139;"></i></h3>
       <hr>
       <div class="d-flex flex-wrap gap-3">
-        <div class="card" style="max-width: 263px">
-          <img src="../images/bakoel.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
-          <div class="card-body">
-            <h5 class="card-title">Bakoel Bambu</h5>
-            <span class="card-text d-flex align-items-center mb-1">
-              <i class="bi bi-geo-alt-fill"></i>
-              Jl. A. Yani No. 1, Banjarmasin
-            </span>
-            <span class="card-text d-flex mb-3 align-items-center">
-              <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
-              <span>4.7</span>
-            </span>
-            <a href="pages/detail.html" class="btn btn-secondary">
-              <i class="bi bi-box-arrow-in-up-right"></i>
-              Selengkapnya
-            </a>
-          </div>
-        </div>
-        <div class="card" style="max-width: 263px">
-          <img src="../images/rm_borneo.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="images/.jpg" />
-          <div class="card-body">
-            <h5 class="card-title">
-              Rumah Makan Borneo
-            </h5>
-            <span class="card-text d-flex align-items-center mb-1">
-              <i class="bi bi-geo-alt-fill"></i>
-              Jl. A. Yani No. 1, Banjarmasin
-            </span>
-            <span class="card-text d-flex mb-3 align-items-center">
-              <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
-              <span>4.9</span>
-            </span>
-            <a href="pages/detail.html" class="btn btn-secondary">
-              <i class="bi bi-box-arrow-in-up-right"></i>
-              Selengkapnya
-            </a>
-          </div>
-        </div>
+        <?php
+        // Sertakan file koneksi database di sini
+        include('../components/koneksi.php');
+        // Jalankan query
+        $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan GROUP BY rumah_makan.id");
+        // Tampilkan data setiap baris
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+            <div class="card" style="width: 263px">
+              <img src="../images/rumah-makan/<?= $row['gambar'] ?>" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
+              <div class="card-body">
+                <h5 class="card-title"><?= $row['nama'] ?></h5>
+                <span class="card-text d-flex align-items-center mb-1">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <?= $row['alamat'] ?>
+                </span>
+                <span class="card-text d-flex mb-3 align-items-center">
+                  <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
+                  <span><?= $row['total_rating'] ? $row['total_rating'] : "0" ?></span>
+                </span>
+                <a href="detail.php?id=<?= $row['id'] ?>" class="btn btn-secondary">
+                  <i class="bi bi-box-arrow-in-up-right"></i>
+                  Selengkapnya
+                </a>
+              </div>
+            </div>
+        <?php
+          }
+        }
+        ?>
       </div>
     </div>
     <div>
       <h3 class="">Berbagai Rumah Makan Murah Ada Disini !</h3>
       <hr>
       <div class="mb-3 ">
-        <form class="d-flex gap-2" role="search">
+        <form class="d-flex gap-2" role="search" method="get">
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Cari Rumah Makan" />
+            <input type="text" class="form-control" name='cari' placeholder="Cari Rumah Makan" />
           </div>
           <button class="btn text-white fw-medium " style="width: 80px;background-color: #40A2E3;" type="submit">
             Cari
@@ -101,62 +99,42 @@
         </form>
       </div>
       <div class="d-flex flex-wrap gap-3">
-        <div class="card" style="max-width: 263px">
-          <img src="../images/bakoel.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
-          <div class="card-body">
-            <h5 class="card-title">Bakoel Bambu</h5>
-            <span class="card-text d-flex align-items-center mb-1">
-              <i class="bi bi-geo-alt-fill"></i>
-              Jl. A. Yani No. 1, Banjarmasin
-            </span>
-            <span class="card-text d-flex mb-3 align-items-center">
-              <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
-              <span>4.7</span>
-            </span>
-            <a href="pages/detail.html" class="btn btn-secondary">
-              <i class="bi bi-box-arrow-in-up-right"></i>
-              Selengkapnya
-            </a>
-          </div>
-        </div>
-        <div class="card" style="max-width: 263px">
-          <img src="../images/rm_borneo.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/.jpg" />
-          <div class="card-body">
-            <h5 class="card-title">
-              Rumah Makan Borneo
-            </h5>
-            <span class="card-text d-flex align-items-center mb-1">
-              <i class="bi bi-geo-alt-fill"></i>
-              Jl. A. Yani No. 1, Banjarmasin
-            </span>
-            <span class="card-text d-flex mb-3 align-items-center">
-              <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
-              <span>4.9</span>
-            </span>
-            <a href="pages/detail.html" class="btn btn-secondary">
-              <i class="bi bi-box-arrow-in-up-right"></i>
-              Selengkapnya
-            </a>
-          </div>
-        </div>
-        <div class="card" style="max-width: 263px">
-          <img src="../images/ayam-goreng-banjar.jpg" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/.jpg" />
-          <div class="card-body">
-            <h5 class="card-title">Ayam Goreng Banjar</h5>
-            <span class="card-text d-flex align-items-center mb-1">
-              <i class="bi bi-geo-alt-fill"></i>
-              Jl. A. Yani No. 1, Banjarmasin
-            </span>
-            <span class="card-text d-flex mb-3 align-items-center">
-              <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
-              <span>4.2</span>
-            </span>
-            <a href="pages/detail.html" class="btn btn-secondary">
-              <i class="bi bi-box-arrow-in-up-right"></i>
-              Selengkapnya
-            </a>
-          </div>
-        </div>
+        <?php
+        // Sertakan file koneksi database di sini
+        include('../components/koneksi.php');
+        // Jalankan query
+        $search = $_GET['cari'];
+        if ($search) {
+          $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan WHERE rumah_makan.nama LIKE '%$search%' GROUP BY rumah_makan.id");
+        } else {
+          $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan GROUP BY rumah_makan.id");
+        }
+        // Tampilkan data setiap baris
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+            <div class="card" style="width: 263px">
+              <img src="../images/rumah-makan/<?= $row['gambar'] ?>" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
+              <div class="card-body">
+                <h5 class="card-title"><?= $row['nama'] ?></h5>
+                <span class="card-text d-flex align-items-center mb-1">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <?= $row['alamat'] ?>
+                </span>
+                <span class="card-text d-flex mb-3 align-items-center">
+                  <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
+                  <span><?= $row['total_rating'] ? $row['total_rating'] : "0" ?></span>
+                </span>
+                <a href="detail.php?id=<?= $row['id'] ?>" class="btn btn-secondary">
+                  <i class="bi bi-box-arrow-in-up-right"></i>
+                  Selengkapnya
+                </a>
+              </div>
+            </div>
+        <?php
+          }
+        }
+        ?>
       </div>
     </div>
   </div>

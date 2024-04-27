@@ -14,7 +14,7 @@
       <a href="../pages/profile.php"><i class="bi bi-person-fill pe-4"></i>Profile</a>
     </li>
     <li class="list-sidebar-item rounded-0">
-      <a href="../index.php"><i class="bi bi-box-arrow-left pe-4"></i>Keluar</a>
+      <a href="../pages/logout.php"><i class="bi bi-box-arrow-left pe-4"></i>Keluar</a>
     </li>
   </ul>
 </div>
