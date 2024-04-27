@@ -32,51 +32,31 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th class="text-center ">1</th>
-                <td class="text-center "><img src="../images/bakoel.jpg" height="120" class="rounded " alt="">
-                </td>
-                <td class="text-center ">Bakoel</td>
-                <td class="text-justify ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae quas id
-                  dolore distinctio error provident inventore, fugit officia sequi earum illo laudantium facere dolorum
-                  debitis perferendis esse eligendi recusandae iste?</td>
-                <td class="text-justify ">Jl. A. Yani No. 1, Banjarmasin</td>
-                <td class="text-center ">4.7</td>
-                <td class="text-center">
-                  <a class="btn bg-success " href="edit.php"><i class="text-white fas fa-pencil"></i></a>
-                  <a class="btn bg-danger " href=""><i class="text-white fa fa-trash"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th class="text-center ">2</th>
-                <td class="text-center "><img src="../images/rm_borneo.jpg" height="120" class="rounded " alt="">
-                </td>
-                <td class="text-center ">Bakoel</td>
-                <td class="text-justify ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae quas id
-                  dolore distinctio error provident inventore, fugit officia sequi earum illo laudantium facere dolorum
-                  debitis perferendis esse eligendi recusandae iste?</td>
-                <td class="text-justify ">Jl. A. Yani No. 1, Banjarmasin</td>
-                <td class="text-center ">4.7</td>
-                <td class="text-center">
-                  <a class="btn bg-success " href="edit.php"><i class="text-white fas fa-pencil"></i></a>
-                  <a class="btn bg-danger " href=""><i class="text-white fa fa-trash"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <th class="text-center ">3</th>
-                <td class="text-center "><img src="../images/ayam-goreng-banjar.jpg" height="120" class="rounded " alt="">
-                </td>
-                <td class="text-center ">Bakoel</td>
-                <td class="text-justify ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae quas id
-                  dolore distinctio error provident inventore, fugit officia sequi earum illo laudantium facere dolorum
-                  debitis perferendis esse eligendi recusandae iste?</td>
-                <td class="text-justify ">Jl. A. Yani No. 1, Banjarmasin</td>
-                <td class="text-center ">4.7</td>
-                <td class="text-center" style="width: 85px;">
-                  <a class="btn bg-success " href="edit.php"><i class="text-white fas fa-pencil"></i></a>
-                  <a class="btn bg-danger " href=""><i class="text-white fa fa-trash"></i></a>
-                </td>
-              </tr>
+              <?php
+              // Sertakan file koneksi database di sini
+              include('../components/koneksi.php');
+              // Jalankan query
+              $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan GROUP BY rumah_makan.id");
+              // Tampilkan data setiap baris
+              if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+              ?>
+                  <tr>
+                    <th class='align-middle text-center'><?= $row['id']; ?></th>
+                    <td class='align-middle text-center'><img src='../images/rumah-makan/<?= $row['gambar']; ?>' height='120' class='rounded' alt=''></td>
+                    <td class='align-middle text-center'><?= $row['nama']; ?></td>
+                    <td class='align-middle text-justify'><?= $row['deskripsi']; ?></td>
+                    <td class='align-middle text-justify'><?= $row['alamat']; ?></td>
+                    <td class='align-middle text-center'><?= $row['total_rating'] ? $row['total_rating'] : 'Belum di rating'; ?></td>
+                    <td class='align-middle text-center'>
+                      <a class='btn bg-success' href='edit.php?id=<?= $row['id']; ?>'><i class='text-white fas fa-pencil'></i></a>
+                      <a class='btn bg-danger' href='delete.php?id=<?= $row['id']; ?>'><i class='text-white fa fa-trash'></i></a>
+                    </td>
+                  </tr>
+              <?php
+                }
+              }
+              ?>
             </tbody>
           </table>
           <!-- end content -->

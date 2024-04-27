@@ -55,7 +55,7 @@
                   <td class="text-center align-middle "><?= $row['role'] ?></td>
                   <td class="text-center align-middle">
                     <a class="btn bg-success " href="edit.php?id=<?= $row['id'] ?>"><i class="text-white fas fa-pencil"></i></a>
-                    <a class="btn bg-danger " href="backend/delete.php?delete=<?= $row['id'] ?>"><i class="text-white fa fa-trash"></i></a>
+                    <a class="btn bg-danger " href="backend/delete.php?id=<?= $row['id'] ?>"><i class="text-white fa fa-trash"></i></a>
                   </td>
                 </tr>
               <?php $no++;

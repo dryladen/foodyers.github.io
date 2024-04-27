@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     echo "<script>alert('Password dan Konfirmasi Password tidak sama')</script>";
   } else {
     // Jika _files kosong
-    if (!isset($_FILES['gambar'])) {
+    if (empty($_FILES['gambar']['name'])) {
       $gambar = ''; // default image
     } else {
       // Jika _files tidak kosong
@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
                   </div>
                   <div class="mb-5">
                     <label for="formFile" class="form-label">Gambar</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" name="gambar" id="formFile">
                   </div>
                   <button class="btn btn-biru btn-lg w-100" type="submit" name="submit">Simpan</button>
                 </form>
