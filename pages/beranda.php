@@ -27,16 +27,18 @@ if (!$_SESSION['role']) {
           <li class="nav-item">
             <a class="nav-link active text-white " aria-current="page" href="#">Beranda</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " aria-current="page" href="#">Tentang</a>
-          </li>
+          <?php if ($_SESSION['role'] == 'admin') { ?>
+            <li class="nav-item">
+              <a class="nav-link text-white " aria-current="page" href="../rumah-makan/index.php">Manajemen Data</a>
+            </li>
+          <?php } ?>
         </ul>
         <div class="dropdown">
           <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $_SESSION['username'] ?>
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
-            <li><a class="dropdown-item" href="/pages/profile.html"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="../pages/profile.php"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -56,7 +58,7 @@ if (!$_SESSION['role']) {
         // Sertakan file koneksi database di sini
         include('../components/koneksi.php');
         // Jalankan query
-        $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan GROUP BY rumah_makan.id");
+        $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan GROUP BY rumah_makan.id ORDER BY total_rating DESC LIMIT 3");
         // Tampilkan data setiap baris
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
@@ -103,8 +105,8 @@ if (!$_SESSION['role']) {
         // Sertakan file koneksi database di sini
         include('../components/koneksi.php');
         // Jalankan query
-        $search = $_GET['cari'];
-        if ($search) {
+        if (isset($_GET['cari']) && !empty($_GET['cari'])) {
+          $search = $_GET['cari'];
           $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan WHERE rumah_makan.nama LIKE '%$search%' GROUP BY rumah_makan.id");
         } else {
           $result = mysqli_query($koneksi, "SELECT rumah_makan.*, SUM(rating.rating) AS total_rating FROM rumah_makan LEFT JOIN rating ON rumah_makan.id = rating.id_rumah_makan GROUP BY rumah_makan.id");

@@ -24,7 +24,7 @@ if (isset($_POST['rating'])) {
   <title>FoodMahasiswaSMD</title>
   <link rel="stylesheet" href="../bootstrap-5.3.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  
+
 </head>
 
 <body class="bg-body-tertiary ">
@@ -37,18 +37,20 @@ if (isset($_POST['rating'])) {
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
           <li class="nav-item">
-            <a class="nav-link active text-white " aria-current="page" href="#">Beranda</a>
+            <a class="nav-link active text-white " aria-current="page" href="beranda.php">Beranda</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " aria-current="page" href="#">Tentang</a>
-          </li>
+          <?php if ($_SESSION['role'] == 'admin') { ?>
+            <li class="nav-item">
+              <a class="nav-link text-white " aria-current="page" href="../rumah-makan/index.php">Manajemen Data</a>
+            </li>
+          <?php } ?>
         </ul>
         <div class="dropdown">
           <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $_SESSION['username'] ?>
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
-            <li><a class="dropdown-item" href="/pages/profile.html"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="../pages/profile.php"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -64,12 +66,13 @@ if (isset($_POST['rating'])) {
       <div class="mb-3 ">
         <div class="card w-100 ">
           <div class="row">
-            <div class="col-8">
-              <img src="../images/rumah-makan/<?= $rumahMakan['gambar'] ?>" class="object-fit-cover w-100 rounded-start " alt="../images/rm_borneo.jpg" />
+            <div class="col-6 p-5">
+              <img src="../images/rumah-makan/<?= $rumahMakan['gambar'] ?>" class="object-fit-cover w-100 rounded " alt="../images/rm_borneo.jpg" />
             </div>
-            <div class="col-4">
+            <div class="col-6">
               <div class="card-body">
                 <h3 class="card-title"><?= $rumahMakan['nama'] ?></h3>
+                <hr>
                 <span style="text-align: justify;"><?= $rumahMakan['deskripsi'] ?></span>
                 <hr>
                 <span class="card-text d-flex align-items-center mb-1">
@@ -134,19 +137,19 @@ if (isset($_POST['rating'])) {
           <hr>
           <form action="" method="POST">
             <div class="mb-3">
-          <label for="rating" class="form-label">Rating</label>
-          <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
-          <select class="form-select" name="rating" id="rating"  required>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
+              <label for="rating" class="form-label">Rating</label>
+              <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
+              <select class="form-select" name="rating" id="rating" required>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
             </div>
             <div class="mb-3">
-          <label for="ulasan" class="form-label">Ulasan</label>
-          <textarea class="form-control" name="ulasan" id="ulasan" rows="3" required></textarea>
+              <label for="ulasan" class="form-label">Ulasan</label>
+              <textarea class="form-control" name="ulasan" id="ulasan" rows="3" required></textarea>
             </div>
             <input type="hidden" name="id_rumah_makan" value="<?= $rumahMakan['id'] ?>">
             <button type="submit" class="btn btn-primary">Kirim</button>

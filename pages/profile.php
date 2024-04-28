@@ -62,68 +62,96 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-  <?php include('../components/head.php') ?>
-  <title>Data Pengguna</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../bootstrap-5.3.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../bootstrap-5.3.3/css/style.css" />
+  <title>Profile</title>
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="row min-vh-100">
-      <?php include('../components/sidebar.php') ?>
-      <div class="col-9 p-0">
-        <?php include('../components/navbar.php') ?>
-        <div id="content" class="px-5 py-3 z-1" style="z-index: 1;">
-          <!-- start content -->
-          <h4 class="fw-bold">Ubah Data</h4>
-          <div class="card bg-body-secondary p-4">
-            <div class="row container-fluid">
-              <div class="card-head col-4 text-center p-3">
-                <img id="preview" src="../images/users/<?= $user['gambar'] ?>" width="200" height="200" class="bg-white rounded-circle  object-fit-contain" alt="">
-              </div>
-              <div class="card-body col-8">
-                <form class="form" action="" method="post" enctype="multipart/form-data">
-                  <div class="mb-2">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username" name="username" value="<?php echo $user['username']; ?>">
-                  </div>
-                  <div class="mb-2">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $user['email']; ?>">
-                  </div>
-                  <div class="mb-2">
-                    <label for="role" class="form-label">Role</label>
-                    <select class="form-control" id="role" name="role">
-                      <option value="user" <?php if ($user['role'] == 'user') echo 'selected'; ?>>User</option>
-                      <option value="admin" <?php if ($user['role'] == 'admin') echo 'selected'; ?>>Admin</option>
-                    </select>
-                  </div>
-                  <div class="mb-2">
-                    <div class="row px-3">
-                      <div class="col-6">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                      </div>
-                      <div class=" col-6">
-                        <label for="konfirmasi-password" class="form-label">Konfirmasi Password</label>
-                        <input type="password" class="form-control" id="konfirmasi-password" name="konfirmasi-password" placeholder="Konfirmasi Password">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mb-5">
-                    <label for="formFile" class="form-label">Gambar</label>
-                    <input class="form-control" type="file" name="gambar" id="formFile">
-                  </div>
-                  <button class="btn btn-biru btn-lg w-100" type="submit" name="submit">Simpan</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <!-- end content -->
+  <nav class="navbar navbar-expand-lg sticky-lg-top py-3" style="background-color: #40A2E3;">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-white " href="#">FoodMahasiswaSMD</a>
+      <button class="navbar-toggler bg-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+          <li class="nav-item">
+            <a class="nav-link active text-white " aria-current="page" href="beranda.php">Beranda</a>
+          </li>
+          <?php if ($_SESSION['role'] == 'admin') { ?>
+            <li class="nav-item">
+              <a class="nav-link text-white " aria-current="page" href="../rumah-makan/index.php">Manajemen Data</a>
+            </li>
+          <?php } ?>
+        </ul>
+        <div class="dropdown">
+          <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $_SESSION['username'] ?>
+          </button>
+          <ul class="dropdown-menu" style="z-index: 99;">
+            <li><a class="dropdown-item" href="../pages/profile.php"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left pe-3"></i>Keluar</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+  </nav>
+  <div class="container">
+    <div class="">
+      <div class="px-5 py-3 z-1" style="z-index: 1;">
+        <!-- start content -->
+        <h4 class="fw-bold">Profile</h4>
+        <div class="card bg-body-secondary p-4">
+          <div class="row container-fluid">
+            <div class="card-head col-4 text-center p-3">
+              <img id="preview" src="../images/users/<?= $user['gambar'] ?>" width="200" height="200" class="bg-white rounded-circle  object-fit-contain" alt="">
+            </div>
+            <div class="card-body col-8">
+              <form class="form" action="" method="post" enctype="multipart/form-data">
+                <div class="mb-2">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Username" name="username" value="<?php echo $user['username']; ?>">
+                </div>
+                <div class="mb-2">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $user['email']; ?>">
+                </div>
+                <div class="mb-2">
+                  <div class="row px-3">
+                    <div class="col-6">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class=" col-6">
+                      <label for="konfirmasi-password" class="form-label">Konfirmasi Password</label>
+                      <input type="password" class="form-control" id="konfirmasi-password" name="konfirmasi-password" placeholder="Konfirmasi Password">
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-5">
+                  <label for="formFile" class="form-label">Gambar</label>
+                  <input class="form-control" type="file" name="gambar" id="formFile">
+                </div>
+                <button class="btn btn-biru btn-lg w-100" type="submit" name="submit">Simpan</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end content -->
+      </div>
+    </div>
+  </div>
   </div>
   <?php include('../components/footer.php') ?>
+  <script src="../bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
   <script>
     document.getElementById('formFile').addEventListener('change', function(event) {
       var reader = new FileReader();

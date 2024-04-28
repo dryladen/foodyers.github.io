@@ -4,8 +4,10 @@ session_start();
 if (isset($_POST['email']) && isset($_POST['password'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
+  $password = md5($password);
   $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
   $result = mysqli_query($koneksi, $query);
+  // memasukan data ke dalam session
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_array($result);
     $_SESSION['id'] = $row['id'];
@@ -14,11 +16,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['password'] = $row['password'];
     $_SESSION['gambar'] = $row['gambar'];
     $_SESSION['role'] = $row['role'];
-    if ($row['role'] == 'user') {
-      header('Location: pages/beranda.php');
-    } elseif ($row['role'] == 'admin') {
-      header('Location: pages/dashboard.php');
-    }
+    header('Location: pages/beranda.php');
   } else {
     echo "<script>alert('Email atau Password salah!')</script>";
   }
@@ -50,7 +48,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 <div class="form-outline mb-3">
                   <input type="password" name="password" id="password" class="form-control form-control-md" placeholder="Password" />
                 </div>
-                <!-- <button class="btn btn-primary btn-lg w-100" type="submit">Masuk</button> -->
                 <button type="submit" class="btn btn-primary btn-lg w-100">Masuk</button>
               </form>
               <hr class="my-4">
