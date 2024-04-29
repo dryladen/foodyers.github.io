@@ -35,7 +35,7 @@ if (!$_SESSION['role']) {
         </ul>
         <div class="dropdown">
           <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $_SESSION['username'] ?>
+            <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt="<?= $_SESSION['gambar'] ?>"><?= $_SESSION['username'] ?>
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
             <li><a class="dropdown-item" href="../pages/profile.php"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
@@ -64,7 +64,7 @@ if (!$_SESSION['role']) {
           while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <div class="card" style="width: 263px">
-              <img src="../images/rumah-makan/<?= $row['gambar'] ?>" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
+              <img src="../images/rumah-makan/<?= $row['gambar'] ?>" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="<?= $row['gambar'] ?>" />
               <div class="card-body">
                 <h5 class="card-title"><?= $row['nama'] ?></h5>
                 <span class="card-text d-flex align-items-center mb-1">
@@ -116,7 +116,7 @@ if (!$_SESSION['role']) {
           while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <div class="card" style="width: 263px">
-              <img src="../images/rumah-makan/<?= $row['gambar'] ?>" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="../images/rm_borneo.jpg" />
+              <img src="../images/rumah-makan/<?= $row['gambar'] ?>" class="card-img-top rounded-top object-fit-cover" style="height: 150px;" alt="<?= $row['gambar'] ?>" />
               <div class="card-body">
                 <h5 class="card-title"><?= $row['nama'] ?></h5>
                 <span class="card-text d-flex align-items-center mb-1">

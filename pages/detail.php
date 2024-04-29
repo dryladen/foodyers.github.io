@@ -67,12 +67,14 @@ if (isset($_POST['rating'])) {
         <div class="card w-100 ">
           <div class="row">
             <div class="col-6 p-5">
-              <img src="../images/rumah-makan/<?= $rumahMakan['gambar'] ?>" class="object-fit-cover w-100 rounded " alt="../images/rm_borneo.jpg" />
+              <img src="../images/rumah-makan/<?= $rumahMakan['gambar'] ?>" class="object-fit-cover w-100 rounded " alt="<?= $rumahMakan['gambar'] ?>" />
             </div>
-            <div class="col-6">
+            <div class="col-6 p-4">
               <div class="card-body">
+                <h6>Rumah Makan</h6>
                 <h3 class="card-title"><?= $rumahMakan['nama'] ?></h3>
                 <hr>
+                <h5>Deskripsi</h5>
                 <span style="text-align: justify;"><?= $rumahMakan['deskripsi'] ?></span>
                 <hr>
                 <span class="card-text d-flex align-items-center mb-1">
@@ -80,9 +82,15 @@ if (isset($_POST['rating'])) {
                   <?= $rumahMakan['alamat'] ?>
                 </span>
                 <span class="card-text d-flex mb-3 align-items-center">
+                  Total Rating : 
                   <i class="bi bi-star-fill me-1" style="color: #eef139;"></i>
                   <span><?= $rumahMakan['total_rating'] ? $rumahMakan['total_rating'] : '0' ?></span>
                 </span>
+                <!-- tampilkan jika ada diskon -->
+                <?php if ($rumahMakan['diskon'] == 'iya') { ?>
+                  <hr>
+                  <span class="badge bg-danger p-2">Ada diskon Khusus Mahasiswa</span>
+                <?php } ?>
               </div>
             </div>
           </div>
