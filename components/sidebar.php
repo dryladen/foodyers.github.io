@@ -1,3 +1,10 @@
+<?php
+// jika belum login
+session_start();
+if (!$_SESSION['role']) {
+  header('Location: ../index.php');
+}
+?>
 <div class="col-3 p-0 fixed-top min-vh-100" style="background-color: #47b3fa; z-index: 6;">
   <h3 class="text-white fw-bold text-center bg-biru m-0" style="padding: 18px 0;">FoodMahasiswaSMD</h3>
   <ul class="list-sidebar fs-4 mt-3 fw-bold" style="background-color: #47b3fa;">

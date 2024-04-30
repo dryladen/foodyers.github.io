@@ -49,8 +49,14 @@
                     <td class='align-middle text-justify'><?= $row['alamat']; ?></td>
                     <td class='align-middle text-center'><?= $row['total_rating'] ? $row['total_rating'] : 'Belum di rating'; ?></td>
                     <td class='align-middle text-center'>
-                      <a class='btn bg-success' href='edit.php?id=<?= $row['id']; ?>'><i class='text-white fas fa-pencil'></i></a>
-                      <a class='btn bg-danger' href='delete.php?id=<?= $row['id']; ?>'><i class='text-white fa fa-trash'></i></a>
+                      <div class="mb-3">
+                        <a class='btn bg-primary' title="Ubah Data" href='edit.php?id=<?=$row['id']; ?>'><i class='text-white fas fa-pencil'></i></a>
+                        <a class='btn bg-danger' title="Hapus Data" href='delete.php?id=<?=$row['id']; ?>'><i class='text-white fa fa-trash'></i></a>
+                      </div>
+                      <div class="">
+                        <a class='btn bg-success' title="Daftar Menu" href="../daftar-menu/index.php?id=<?= $row['id'] ?>"><i class="text-white bi bi-bag-plus"></i></i></a>
+                        <a class='btn bg-primary' title="Detail Rumah Makan" href="../pages/detail.php?id=<?= $row['id'] ?>"><i class="text-white bi bi-journal-text"></i></i></a>
+                      </div>
                     </td>
                   </tr>
               <?php

@@ -46,7 +46,7 @@ if(isset($_POST['submit'])) {
           <h4 class="fw-bold">Tambah Data</h4>
           <div class="card  bg-body-secondary p-4">
             <div class="">
-              <form class="form container-fluid d-flex flex-wrap" action="" method="post">
+              <form class="form container-fluid d-flex flex-wrap" action="" method="post" enctype="multipart/form-data">
                 <div class="card-head text-center p-3">
                   <img id="preview" src="../images/rumah-makan/default.png" width="250" height="250" class="rounded object-fit-contain" alt="">
                   <div class="mt-3 text-start">

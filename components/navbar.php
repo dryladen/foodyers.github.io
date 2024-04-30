@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 include('../components/koneksi.php');
 // Mengambil id dari session
 $id = $_SESSION['id'];
