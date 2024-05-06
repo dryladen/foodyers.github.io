@@ -13,7 +13,6 @@ if (isset($_POST['submit'])) {
   // Mengambil data dari form
   $username = $_POST['username'];
   $email = $_POST['email'];
-  $role = $_POST['role'];
   $password = $_POST['password'];
   $konfirmasi_password = $_POST['konfirmasi-password'];
   // Jika password dan konfirmasi password tidak sama
@@ -33,10 +32,10 @@ if (isset($_POST['submit'])) {
     if ($gambar == '') {
       if ($password == '') {
         // Jika password kosong, tidak ubah password
-        $query = "UPDATE users SET username = '$username', email = '$email', role = '$role' WHERE id = $id";
+        $query = "UPDATE users SET username = '$username', email = '$email' WHERE id = $id";
       } else {
         // Jika password tidak kosong, ubah password
-        $query = "UPDATE users SET username = '$username', email = '$email', role = '$role', password = '$password' WHERE id = $id";
+        $query = "UPDATE users SET username = '$username', email = '$email', password = '$password' WHERE id = $id";
       }
       // Menjalankan query
       mysqli_query($koneksi, $query);
@@ -44,10 +43,10 @@ if (isset($_POST['submit'])) {
       // Jika gambar diubah
       if ($password == '') {
         // Jika password kosong, tidak ubah password
-        $query = "UPDATE users SET username = '$username', email = '$email', role = '$role', gambar = '$gambar' WHERE id = $id";
+        $query = "UPDATE users SET username = '$username', email = '$email', gambar = '$gambar' WHERE id = $id";
       } else {
         // Jika password tidak kosong, ubah password
-        $query = "UPDATE users SET username = '$username', email = '$email', role = '$role', password = '$password', gambar = '$gambar' WHERE id = $id";
+        $query = "UPDATE users SET username = '$username', email = '$email', password = '$password', gambar = '$gambar' WHERE id = $id";
       }
       move_uploaded_file($tmp, '../images/users/' . $gambar);
       // Menjalankan query
@@ -82,7 +81,7 @@ if (isset($_POST['submit'])) {
           <li class="nav-item">
             <a class="nav-link active text-white " aria-current="page" href="beranda.php">Beranda</a>
           </li>
-          <?php if ($_SESSION['role'] == 'admin') { ?>
+          <?php if ($user['role'] == 'admin') { ?>
             <li class="nav-item">
               <a class="nav-link text-white " aria-current="page" href="../rumah-makan/index.php">Manajemen Data</a>
             </li>
@@ -90,7 +89,7 @@ if (isset($_POST['submit'])) {
         </ul>
         <div class="dropdown">
           <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $_SESSION['username'] ?>
+            <img src="../images/users/<?= $user['gambar'] ?>" width="32" class="rounded-circle me-3" alt=""><?= $user['username'] ?>
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
             <li><a class="dropdown-item" href="../pages/profile.php"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
@@ -125,7 +124,7 @@ if (isset($_POST['submit'])) {
                   <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $user['email']; ?>">
                 </div>
                 <div class="mb-2">
-                  <div class="row px-3">
+                  <div class="row">
                     <div class="col-6">
                       <label for="password" class="form-label">Password</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password">

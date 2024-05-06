@@ -1,64 +1,58 @@
-<?php
-include('components/koneksi.php');
-session_start();
-if (isset($_POST['email']) && isset($_POST['password'])) {
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $password = md5($password);
-  $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-  $result = mysqli_query($koneksi, $query);
-  // memasukan data ke dalam session
-  if (mysqli_num_rows($result) == 1) {
-    $row = mysqli_fetch_array($result);
-    $_SESSION['id'] = $row['id'];
-    $_SESSION['username'] = $row['username'];
-    $_SESSION['email'] = $row['email'];
-    $_SESSION['password'] = $row['password'];
-    $_SESSION['gambar'] = $row['gambar'];
-    $_SESSION['role'] = $row['role'];
-    header('Location: pages/beranda.php');
-  } else {
-    echo "<script>alert('Email atau Password salah!')</script>";
-  }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="bootstrap-5.3.3/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="bootstrap-5.3.3/css/style.css" />
+  <title>FoodMahasiswaSMD</title>
 </head>
 
-<body>
-  <section class="vh-100" style="background-color: #40A2E3;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-              <form action="" method="post">
-                <h3 class="mb-4">Masuk Akun</h3>
-                <div class="form-outline mb-3">
-                  <input type="email" name="email" id="email" class="form-control form-control-md" placeholder="Email" />
-                </div>
-                <div class="form-outline mb-3">
-                  <input type="password" name="password" id="password" class="form-control form-control-md" placeholder="Password" />
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg w-100">Masuk</button>
-              </form>
-              <hr class="my-4">
-              <p class="mb-0">Belum punya akun? <a href="pages/register.php">Daftar</a></p>
-            </div>
-          </div>
-        </div>
+<body class="bg-bg-body-tertiary min-vh-100">
+  <nav class="navbar navbar-expand-lg sticky-lg-top py-3" style="background-color: #40A2E3;">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-white " href="#">FoodMahasiswaSMD</a>
+      <button class="navbar-toggler bg-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+        </ul>
       </div>
     </div>
-  </section>
-  <script src="bootstrap-5.3.3/js/bootstrap.min.js"></script>
+  </nav>
+  <div class="container py-3" style="height: 480px;">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="col-8">
+        <h1>Selamat Datang Di <span class="fw-bold" style="color: #40A2E3;">Food Mahasiswa Samarinda</span></h1>
+        <hr>
+        <h4>Temukan Tempat Makan Favoritmu Disini !</h4>
+        <p>Food Mahasiswa Samarinda adalah website yang menyediakan informasi tempat makan favorit di Samarinda. Website ini dibuat untuk memudahkan mahasiswa dalam mencari tempat makan yang sesuai dengan selera dan budget mahasiswa.</p>
+        <hr>
+        <a href="pages/login.php" class="btn btn-biru rounded-4 px-5 fw-bold">Masuk</a>
+      </div>
+      <div class="col-4">
+        <img src="images/rumah-makan/default.png" class="card-img-top rounded-top object-fit-contain" style="height: 250px;" alt="<?= $row['gambar'] ?>" />
+      </div>
+    </div>
+  </div>
+  </div>
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top fixed-bottom" style="background-color: #40A2E3;">
+    <div class="col-md-4 d-flex align-items-center ps-5 ">
+      <span class="mb-3 mb-md-0 text-white ">© Syahria - 2024</span>
+    </div>
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-5 ">
+      <li class="ms-3">
+        <a class="text-white " href="#"><i class="bi bi-instagram"></i></a>
+      </li>
+      <li class="ms-3">
+        <a class="text-white " href="#"><i class="bi bi-facebook"></i></a>
+      </li>
+    </ul>
+  </footer>
+  <script src="bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

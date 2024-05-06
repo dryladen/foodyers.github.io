@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2024 at 03:15 PM
+-- Generation Time: Apr 30, 2024 at 06:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `food_mahasiswa_smd`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daftar_menu`
+--
+
+CREATE TABLE `daftar_menu` (
+  `id` int(11) NOT NULL,
+  `id_rumah_makan` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `harga` varchar(255) NOT NULL,
+  `jenis` enum('makanan','minuman') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `daftar_menu`
+--
+
+INSERT INTO `daftar_menu` (`id`, `id_rumah_makan`, `nama`, `harga`, `jenis`) VALUES
+(3, 1, 'Pudding', '12000', 'minuman'),
+(6, 1, 'Ayam Ganja', '15000', 'makanan'),
+(7, 1, 'Es Jeruk', '5000', 'minuman'),
+(8, 2, 'Salad buah', '18000', 'makanan');
 
 -- --------------------------------------------------------
 
@@ -63,7 +87,7 @@ CREATE TABLE `rumah_makan` (
 --
 
 INSERT INTO `rumah_makan` (`id`, `nama`, `deskripsi`, `alamat`, `diskon`, `gambar`) VALUES
-(1, 'Bakoel', 'Rumah makan enak banget', 'Jl. Pramuka', 'iya', 'boa.png'),
+(1, 'Bakoel', 'Rumah makan enak banget', 'Jl. Pramuka', 'iya', 'bakoel.jpg'),
 (2, 'Warueo WBambu', 'awdad', 'Jl suka situ', 'tidak', 'default.png');
 
 -- --------------------------------------------------------
@@ -93,6 +117,13 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `gambar`) VA
 --
 
 --
+-- Indexes for table `daftar_menu`
+--
+ALTER TABLE `daftar_menu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_menu_rumah_makan` (`id_rumah_makan`);
+
+--
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
@@ -117,6 +148,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `daftar_menu`
+--
+ALTER TABLE `daftar_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
@@ -137,6 +174,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `daftar_menu`
+--
+ALTER TABLE `daftar_menu`
+  ADD CONSTRAINT `fk_menu_rumah_makan` FOREIGN KEY (`id_rumah_makan`) REFERENCES `rumah_makan` (`id`);
 
 --
 -- Constraints for table `rating`

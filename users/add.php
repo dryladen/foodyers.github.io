@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     echo "<script>alert('Email sudah digunakan')</script>";
   } else {
     if ($password == $konfirmasi_password) {
+      $password = md5($password);
       if (empty($_FILES['gambar']['name'])) {
         $gambar = 'user.jpg'; // default image
       } else {
@@ -24,7 +25,7 @@ if (isset($_POST['submit'])) {
       if ($koneksi->query($sql) === TRUE) {
         move_uploaded_file($tmp, $path);
         echo "<script>alert('Data berhasil ditambahkan')</script>";
-        echo "<script>window.location.replace('../index.php')</script>";
+        echo "<script>window.location.replace('index.php')</script>";
       } else {
         echo "Error: " . $sql . "<br>" . $koneksi->error;
       }
@@ -49,11 +50,7 @@ if (isset($_POST['submit'])) {
     <div class="row min-vh-100">
       <?php include('../components/sidebar.php'); ?>
       <div class="col-9 p-0">
-        <nav class="fixed-top" style="background-color: #47b3fa;z-index: 5;">
-          <div class="text-end px-5" style="padding: 15px 0;">
-            <span class="nav-link text-white "><img src="../images/user/user.jpg" width="32" class="rounded-circle me-3" alt="">Syahria</span>
-          </div>
-        </nav>
+        <?php include('../components/navbar.php') ?>
         <div id="content" class="px-5 py-3 z-1" style="z-index: 1;">
           <!-- start content -->
           <h4 class="fw-bold">Tambah Data</h4>
@@ -63,7 +60,7 @@ if (isset($_POST['submit'])) {
                 <img id="preview" src="../images/user.jpg" width="200" height="200" class="rounded-circle object-fit-contain" alt="">
               </div>
               <div class="card-body col-8">
-                <form class="form" action="backend/add.php" method="post" enctype="multipart/form-data">
+                <form class="form" action="" method="post" enctype="multipart/form-data">
                   <div class="mb-2">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Username">

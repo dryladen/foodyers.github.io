@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
       $sql = "INSERT INTO users (username, email, password, role, gambar) VALUES ('$username', '$email', '$password', 'user', 'user.jpg')";
       if ($koneksi->query($sql) === TRUE) {
         echo "<script>alert('Data berhasil ditambahkan')</script>";
-        echo "<script>window.location.replace('../index.php')</script>";
+        echo "<script>window.location.replace('login.php')</script>";
       } else {
         echo "Error: " . $sql . "<br>" . $koneksi->error;
       }
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 <button type="submit" name="submit" class="btn btn-primary btn-lg w-100">Daftar</button>
               </form>
               <hr class="my-4">
-              <p class="mb-0">Sudah punya akun? <a href="../index.php">Masuk</a></p>
+              <p class="mb-0">Sudah punya akun? <a href="login.php">Masuk</a></p>
             </div>
           </div>
         </div>

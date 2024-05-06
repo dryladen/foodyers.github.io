@@ -2,6 +2,12 @@
 if (!$_SESSION['role']) {
   header('Location: ../index.php');
 }
+$id = $_SESSION['id'];
+include('../components/koneksi.php');
+// Mengambil data dari database
+$result = mysqli_query($koneksi, "SELECT * FROM users WHERE id = $id");
+// Mengubah data menjadi array assosiatif
+$user = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +21,7 @@ if (!$_SESSION['role']) {
   <title>FoodMahasiswaSMD</title>
 </head>
 
-<body class="bg-body-tertiary ">
+<body class="bg-body-secondary ">
   <nav class="navbar navbar-expand-lg sticky-lg-top py-3" style="background-color: #40A2E3;">
     <div class="container">
       <a class="navbar-brand fw-bold text-white " href="#">FoodMahasiswaSMD</a>
@@ -27,7 +33,7 @@ if (!$_SESSION['role']) {
           <li class="nav-item">
             <a class="nav-link active text-white " aria-current="page" href="#">Beranda</a>
           </li>
-          <?php if ($_SESSION['role'] == 'admin') { ?>
+          <?php if ($user['role'] == 'admin') { ?>
             <li class="nav-item">
               <a class="nav-link text-white " aria-current="page" href="../rumah-makan/index.php">Manajemen Data</a>
             </li>
@@ -35,7 +41,7 @@ if (!$_SESSION['role']) {
         </ul>
         <div class="dropdown">
           <button class="btn btn-biru dropdown-toggle text-white border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="../images/users/<?= $_SESSION['gambar'] ?>" width="32" class="rounded-circle me-3" alt="<?= $_SESSION['gambar'] ?>"><?= $_SESSION['username'] ?>
+            <img src="../images/users/<?= $user['gambar'] ?>" width="32" class="rounded-circle me-3" alt="<?= $user['gambar'] ?>"><?= $user['username'] ?>
           </button>
           <ul class="dropdown-menu" style="z-index: 99;">
             <li><a class="dropdown-item" href="../pages/profile.php"><i class="bi bi-person-fill pe-3"></i>Profile</a></li>
@@ -50,7 +56,7 @@ if (!$_SESSION['role']) {
     </div>
   </nav>
   <div class="container py-3 w-100">
-    <div class="mb-3">
+    <div class="card mb-3 p-3 rounded-4">
       <h3>Rumah Makan Direkomendasi <i class="bi bi-star-fill" style="color: #eef139;"></i></h3>
       <hr>
       <div class="d-flex flex-wrap gap-3">
@@ -87,7 +93,7 @@ if (!$_SESSION['role']) {
         ?>
       </div>
     </div>
-    <div>
+    <div class="card p-3 rounded-4">
       <h3 class="">Berbagai Rumah Makan Murah Ada Disini !</h3>
       <hr>
       <div class="mb-3 ">
